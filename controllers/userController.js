@@ -64,22 +64,21 @@ module.exports = {
     .then((user) => 
     !user
     ? res.status(404).json({ message: 'No friend found with that ID.'})
-    : res.josn(user)
+    : res.json(user)
     )
-    .catch((err) => res.status(500).json(err));
+    //.catch((err) => res.status(500).json(err));
   },
   // Delete Friend
   removeFriend(req, res) {
-    User.findOneAndRemove(
-      { _id: req.params.userId },
-      { $pull: { friends: req.params.friends }},
-      { new: true }
-    )
-    .then((user) =>
-    !user
-    ? res.status(404).json({ message: 'No user found with that ID.'})
-    : res.json(user)
-    )
-    .catch((err) => res.status(500).json(err));
+    User.findOneAndDelete(
+      { _id: req.params.userId, friends: req.params.friendId },
+      { new: true },
+      (err, user) => {
+        if(!user) {
+          return res.status(404).json({ message: 'No user found with that ID.'});
+        }
+        res.json(user)
+      }
+    );
   }
 };

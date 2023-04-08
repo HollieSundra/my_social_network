@@ -20,7 +20,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
+      get: createdAtVal => createdAtVal.toLocaleDateString()
     }
   },
 );
@@ -36,7 +36,7 @@ const thoughtSchema = new Schema (
     createdAt: {
       type: Date,
       default: Date.now,
-      get: createdAtVal => dateFormat(createdAtVal)
+      get: createdAtVal => createdAtVal.toLocaleDateString()
     },
     username: {
       type: String,
@@ -56,7 +56,7 @@ const thoughtSchema = new Schema (
 
 // Total count of reactions
 thoughtSchema.virtual('reactionCount').get(function() {
-  return this.reaction.length;
+  return this.reactions.length;
 });
 
 

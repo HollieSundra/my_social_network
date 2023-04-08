@@ -6,7 +6,7 @@ module.exports = {
   getThoughts(req, res) {
     Thought.find({})
       .then(async (thought) => res.json(thought))
-      .catch((err) => res.status(500).json(err));
+      //.catch((err) => res.status(500).json(err));
   },
   // Get a single thought
   getSingleThought(req, res) {
@@ -27,16 +27,17 @@ module.exports = {
     Thought.create(req.body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
+          { username: req.body.username },
           { $push: {thoughts: _id }}, 
           { new: true }
-        );
+        )
       })
       .then ((thought) => 
       !thought 
       ? res.status(404).json({ message: 'No thought found with this ID.'})
       :res.json(thought)
-      ) .catch((err) => res.status(500).json(err));
+      ) 
+      //.catch((err) => res.status(500).json(err));
   },
   // Delete a thought and remove them from the user
   removeThought(req, res) {
@@ -90,7 +91,7 @@ updateThought(req, res) {
               .json({ message: 'No thought found with that ID.' })
           : res.json(thought)
       )
-      .catch((err) => res.status(500).json(err));
+      //.catch((err) => res.status(500).json(err));
   },
   // Remove reaction from a thought
   removeReaction(req, res) {
