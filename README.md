@@ -64,6 +64,10 @@ DELETE /api/users/:userId/friends/:friendId: Removes the user with the specified
 ## Demo
 
 
+
+[Social Network.webm](https://user-images.githubusercontent.com/106099150/230760217-4156a418-28a9-4e37-b5c8-f9b8f0319fbb.webm)
+
+
 ## Contributing
 
 Week 18 mini project was used as starter code. 
