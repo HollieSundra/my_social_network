@@ -20,10 +20,10 @@ router.route('/:thoughtId')
 .delete(removeThought);
 
 //http://localhost:3001/api/thoughts/:thoughtId/reactions
-router.route('/thoughts/:thoughtId/reactions')
+router.route('/:thoughtId/reactions')
 .post(createReaction);
 
-router.route('/thoughts/:thoughtId/reactions/:reactionId')
+router.route('/:thoughtId/reactions')
 .delete(removeReaction);
 
 
